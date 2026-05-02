@@ -18,14 +18,18 @@ from agent import root_agent
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-PROJECT_ID = "warier-agents"
-REGION = "us-central1"
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "YOUR_GCP_PROJECT_ID")
+REGION = os.getenv("GOOGLE_CLOUD_LOCATION", "us-central1")
+STAGING_BUCKET = os.getenv("GOOGLE_CLOUD_STORAGE_BUCKET")
+
+if STAGING_BUCKET and not STAGING_BUCKET.startswith("gs://"):
+    STAGING_BUCKET = f"gs://{STAGING_BUCKET}"
 
 # Initialize Vertex AI
 vertexai.init(
     project=PROJECT_ID,
     location=REGION,
-    staging_bucket="gs://warier-agents",
+    staging_bucket=STAGING_BUCKET,
 )
 
 logger.info("Registering ADK Agent in the Vertex AI Agent Registry...")

@@ -3,11 +3,18 @@
 # Exit on error
 set -e
 
-# Variables
-PROJECT_ID="warier-agents"
-REGION="us-central1"
+# Load configurations from .env file
+if [ -f .env ]; then
+    export $(cat .env | grep -v '#' | xargs)
+else
+    echo "ERROR: .env file not found. Please copy .env.example to .env and configure it."
+    exit 1
+fi
+
+PROJECT_ID="${GOOGLE_CLOUD_PROJECT}"
+REGION="${GOOGLE_CLOUD_LOCATION}"
 SERVICE_NAME="adk-cloudrun-demo"
-IMAGE_TAG="us-central1-docker.pkg.dev/${PROJECT_ID}/adk-agents-repo/${SERVICE_NAME}:latest"
+IMAGE_TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/adk-agents-repo/${SERVICE_NAME}:latest"
 
 echo "============================================================"
 echo "1. Packaging and building ADK Agent on Google Cloud Build..."

@@ -24,13 +24,23 @@ adk-cloudrun-demo/
 
 ---
 
-## 🛠️ Pre-requisites
+## 🛠️ Pre-requisites & Configuration
 
-Ensure you have the correct Google Cloud CLI setup:
-- Set project to: `warier-agents` (already configured in your current shell context).
-- Enable APIs:
+Before running or deploying this demo, configure your Google Cloud parameters in a single `.env` file:
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+2. Open `.env` and fill in your actual **GCP Project ID**, preferred **Location**, and your **GCS Staging Bucket name**. The scripts (`deploy.sh`, `register_agent.py`, and `eval_suite.py`) will dynamically load all parameters from this single file!
+
+Ensure you have the Google Cloud CLI installed and setup:
+- Set active project in `gcloud`:
   ```bash
-  gcloud services enable run.googleapis.com cloudbuild.googleapis.com cloudtrace.googleapis.com aiplatform.googleapis.com
+  gcloud config set project YOUR_GCP_PROJECT_ID
+  ```
+- Enable necessary Google Cloud APIs:
+  ```bash
+  gcloud services enable run.googleapis.com cloudbuild.googleapis.com cloudtrace.googleapis.com aiplatform.googleapis.com artifactregistry.googleapis.com
   ```
 
 ---
@@ -44,7 +54,7 @@ pip install -r requirements.txt
 
 ### Run FastAPI Server Locally
 ```bash
-export GOOGLE_CLOUD_PROJECT="warier-agents"
+export GOOGLE_CLOUD_PROJECT="YOUR_GCP_PROJECT_ID"
 python main.py
 ```
 The app runs at `http://localhost:8080`.
@@ -83,7 +93,7 @@ By deploying with ADK and modern gen-ai integrations, Observability & Tracing ar
 
 Run the evaluation suite programmatically against your agent:
 ```bash
-export GOOGLE_CLOUD_PROJECT="warier-agents"
+export GOOGLE_CLOUD_PROJECT="YOUR_GCP_PROJECT_ID"
 python eval_suite.py
 ```
 The results, metric scoring, and evaluation details will natively stream and populate directly inside the **Vertex AI Evaluation** UI in the Google Cloud Console.
