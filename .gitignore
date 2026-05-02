@@ -1,0 +1,24 @@
+# Python cache and bytecodes
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs and system files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS and system files
+Thumbs.db
+ehthumbs.db

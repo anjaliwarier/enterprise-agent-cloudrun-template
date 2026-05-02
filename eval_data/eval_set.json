@@ -1,0 +1,24 @@
+[
+  {
+    "name": "operational_risk_eval_set",
+    "data": [
+      {
+        "query": "What are the main operational risks for property insurance in costal areas?",
+        "expected_tool_use": [
+          {
+            "tool_name": "google_search"
+          }
+        ],
+        "reference": "Coastal areas are prone to high risk from hurricanes, floods, wind damage, and severe storms. Operational risks include business interruption, infrastructure degradation, and elevated claims volume."
+      },
+      {
+        "query": "Hello!",
+        "expected_tool_use": [],
+        "reference": "Hi there! I am a Risk Analyst Agent deployed on Google Cloud Run. How can I help you analyze property and casualty insurance risks today?"
+      }
+    ],
+    "initial_state": {
+      "session": {}
+    }
+  }
+]
