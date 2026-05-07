@@ -32,9 +32,9 @@ gcloud run deploy "${SERVICE_NAME}" \
     --set-env-vars "GOOGLE_CLOUD_PROJECT=${PROJECT_ID}"
 
 echo "============================================================"
-echo "3. Registering Agent in Vertex AI Agent Registry..."
+echo "3. Registering External Endpoint in Agent Registry..."
 echo "============================================================"
-python register_agent.py
+python3 register_external_endpoint.py
 
 echo "============================================================"
 echo "🚀 ADK Agent successfully deployed on Cloud Run and registered in the Agent Registry!"

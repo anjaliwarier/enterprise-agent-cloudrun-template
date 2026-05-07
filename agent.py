@@ -11,8 +11,9 @@ from google.adk.tools import google_search
 # -------------------------------------------------------------------------
 # Define the Root Agent
 # -------------------------------------------------------------------------
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "YOUR_GCP_PROJECT_ID")
 root_agent = LlmAgent(
-    model="gemini-2.5-pro",
+    model=f"projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-2.5-pro",
     name="adk_cloudrun_risk_analyst",
     description=(
         "An enterprise-grade Risk Analysis Agent deployed on Cloud Run."
